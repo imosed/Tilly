@@ -24,7 +24,7 @@ block content
           span.col-md-12 ..
         if files
           each f in files
-            li.list-group-item.fileobj(class=f.obj_type == 'd' ? 'dir' : '')
+            li.list-group-item(class=f.obj_type == 'd' ? 'dir' : 'fileobj')
               span.col-md-4
                 include modules/fileicons.jade
                 span.filename= f.display_name

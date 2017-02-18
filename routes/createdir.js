@@ -21,7 +21,9 @@ router.post('/', function(req, res, next) {
   var listing = new Listing();
   var dateCreated = new Date();
   listing.display_name = req.body.dirname;
-  listing.path = req.body.createin + '/' + req.body.dirname;
+  listing.file_name = req.body.dirname;
+  listing.path = req.body.createin;
+  listing.ext = null;
   listing.size = 0;
   listing.owner = req.user._id;
   listing.obj_type = 'd';

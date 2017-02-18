@@ -23,6 +23,8 @@ function getFileIcon(ext) {
             return '/images/icons/file-text2.png';
         case ('.doc'):
             return '/images/icons/file-text2.png';
+          case undefined:
+            return '/images/icons/folder.png';
     }
     // TODO: Add more extensions
 }
@@ -31,6 +33,10 @@ function leadingZero(n) {
     n += '';
     if (n.length == 1) return '0' + n;
     else return n;
+}
+
+function getFileName(ele) {
+    return $($($(ele).children()[0]).children()[1]).text();
 }
 
 var opts = {
@@ -66,13 +72,13 @@ $(document).ready(function() {
     }, 4000);
 
     $('.fileobj').click(function(){
-      var propertiesfilename = $($($(this).children()[0]).children()[1]).text();
+      var propertiesFilename = getFileName(this);
       $('#fileprop').css('display', 'block');
-      $('#forfile').text(propertiesfilename);
+      $('#forfile').text(propertiesFilename);
       var target = document.getElementById('load-ind');
       var spinner = new Spinner(opts).spin(target);
       $.ajax({
-        url: 'filestats/' + encodeURIComponent($('#currdir').val()) + '/' + propertiesfilename,
+        url: 'filestats/' + encodeURIComponent($('#currdir').val()) + '/' + propertiesFilename,
         context: document.body
       }).done(function(data){
         spinner.stop();
@@ -90,6 +96,21 @@ $(document).ready(function() {
         $('#fshared').text(r.shared);
         $('#fpprev').attr('src', ('/user_content/' + r.display_name.toString()));
       })
+    });
+
+    $('.dir').click(function(){
+      window.location = '/files/' + getFileName(this);
+    });
+
+    $('#toparent').click(function(){
+      var currentPath = '';
+      var pathLength = (window.location.href).split('/').length;
+      if(pathLength > 4) {
+        currentPath = decodeURIComponent(currentPath[currentPath.length - 1]);
+        currentPath = currentPath.split('/');
+        currentPath[currentPath.length - 1] = '';
+        window.location.href = '/files/' + encodeURIComponent(currentPath.join('/'));
+      }
     });
 
     $('.fpclose').click(function(){

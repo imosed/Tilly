@@ -24,7 +24,7 @@ function cp(src, dst, callback) {
   }
 }
 
-/* GET home page. */
+/* Get stats for file (size, owner, etc) */
 router.get('/:path/:filename', function(req, res, next) {
   Listing.getFileStats(req.user, decodeURIComponent(req.params.path), decodeURIComponent(req.params.filename), (err, stats) => {
     if(err) return res.send('Could not get file stats.');

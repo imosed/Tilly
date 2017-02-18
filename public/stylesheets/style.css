@@ -157,6 +157,10 @@ a {
   width: 100%;
 }
 
+#upldir, #createin {
+  display: none;
+}
+
 .fpclose {
   height: 100%;
   width: 4%;
@@ -215,13 +219,13 @@ a {
     margin-left: 8px;
 }
 
-.fileobj, #toparent {
+.fileobj, .dir, #toparent {
     overflow: hidden;
     padding: 8px 0;
     cursor: pointer;
 }
 
-.fileobj:hover, #toparent:hover {
+.fileobj:hover, .dir:hover, #toparent:hover {
     background-color: #BBBBBB;
     color: white;
 }
