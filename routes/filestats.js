@@ -28,7 +28,7 @@ function cp(src, dst, callback) {
 router.get('/:path/:filename', function(req, res, next) {
   Listing.getFileStats(req.user, decodeURIComponent(req.params.path), decodeURIComponent(req.params.filename), (err, stats) => {
     if(err) return res.send('Could not get file stats.');
-    cp((path.resolve('storage/', stats.file_name)), (path.resolve('public/', 'user_content/', stats.display_name)), (e) => {
+    cp((path.resolve('storage/', (req.user._id).toString() + '/', stats.file_name)), (path.resolve('public/', 'user_content/', stats.display_name)), (e) => {
       if(e) return res.send("Could not copy file.");
       else res.send(stats);
     });

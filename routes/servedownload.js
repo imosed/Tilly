@@ -9,7 +9,6 @@ const fs = require('fs');
 
 /* GET home page. */
 router.get('/:file', function(req, res, next) {
-  console.log('- - - - ' + path.resolve('public/', 'user_content/', req.params.file));
   res.download(path.resolve('public/', 'user_content/', req.params.file));
 });
 
