@@ -21,8 +21,10 @@ function preciseRound(n) {
 
 /* GET home page. */
 router.get('/:navpath*?', function(req, res, next) {
-    var navpath = '/home/' + req.user.username + '/' + (req.params.navpath || '');
-    const index = Listings.getListingsForUser(req.user, navpath, (err, files) => {
+    var navPath = (req.params.navpath || '');
+    var homeDir = navPath.length > 0;
+    var navPath = '/home/' + req.user.username + '/' + navPath;
+    const index = Listings.getListingsForUser(req.user, navPath, (err, files) => {
         if (err) res.send(err);
         req.flash('login', 'Welcome, ' + req.user.username + '!');
         res.render('files', {
@@ -30,7 +32,8 @@ router.get('/:navpath*?', function(req, res, next) {
             user: req.user,
             messages: req.flash('login'),
             moment: moment,
-            navpath: navpath,
+            navPath: navPath,
+            homeDir: homeDir,
             files: files,
             preciseRound: preciseRound
         });
