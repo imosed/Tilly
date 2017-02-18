@@ -1,0 +1,11 @@
+#uplcont
+    form#uplform(method='post', action='/upload', enctype='multipart/form-data')
+        input#upldir(type='text', name='upldir', value=navpath)
+        input#uplbox(type='file', name='uplbox')
+        button#sbtn(type='submit') Upload
+
+#newdir
+    form#dirform(method='post', action='/createdir')
+        input#createin(type='text', name='createin', value=navpath)
+        input#dirname(type='text', name='dirname')
+        button#dirsub(type='submit') Submit

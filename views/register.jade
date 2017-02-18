@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  #maincontent
+    form(action='/register', method='POST')
+      .form-group
+        label Username
+        input(type='text', name='username')
+      .form-group
+        label Password
+        input(type='password', name='password')
+      .form-group
+        label Email Address
+        input(type='text', name='email')
+      //- .form-group
+      //-   label Group
+      //-   input(type='text', name='group')
+      .form-group
+        label Storage Limit
+        input(type='number', name='storage')
+      input(type='submit', value='Sign up')
+
+    if errs
+      each error in errs
+        p= error.msg

@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  script(type='text/javascript', src='/javascripts/login.js')
+  #lbar
+    form#dologin(action='/login', method='POST')
+      input.authbox(type='text', placeholder='Username', name='username')
+      input.authbox(type='password', placeholder='Password', name='password')

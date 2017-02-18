@@ -1,0 +1,67 @@
+extends layout
+
+block content
+  script(type='text/javascript', src='/javascripts/jquery.form.js')
+  script(type='text/javascript', src='/javascripts/createlisting.js')
+  script(type='text/javascript', src='/javascripts/spin.min.js')
+  script(type='text/javascript', src='/javascripts/script.js')
+  script(type='text/javascript', src='/javascripts/moment.js')
+  input#currdir(type='text', value=navpath)
+  #maincontent
+    #waiting
+    #dbar
+      .col-md-4.fih Filename
+      .col-md-2.fih File Size
+      .col-md-2.fih Owner
+      .col-md-2.fih Date Added
+      .col-md-2.fih Shared
+    #fman
+      #flashmessage
+        each m in messages
+          span= m
+      ul.list-group.filelist
+        li.list-group-item#toparent
+          span.col-md-12 ..
+        if files
+          each f in files
+            li.list-group-item.fileobj(class=f.obj_type == 'd' ? 'dir' : '')
+              span.col-md-4
+                include modules/fileicons.jade
+                span.filename= f.display_name
+              span.col-md-2
+                | #{preciseRound(f.size / 1024)}KB
+              span.col-md-2= f.owner.username
+              span.col-md-2= moment(f.date_added).format('MM-DD-YYYY')
+              span.col-md-2= f.shared
+        else
+          p There's nothing here!
+    #statusbar
+      span.col-md-9
+        input#directory(type='text', value=navpath)
+      span.col-md-1.sbbutton.sb-l#uplbtn
+        img(src='/images/icons/interface/upload.png', width='32', height='32')
+      span.col-md-1.sbbutton.sb-l
+        img(src='/images/icons/interface/download.png', width='32', height='32')
+      span.col-md-1.sbbutton.sb-xl
+        img(src='/images/icons/interface/uparrow2.png', width='28', height='28')
+    #menubar
+      span.col-md-1.mbtn
+        img(src='/images/icons/interface/check.png', width='16', height='16')
+      span.col-md-1.mbtn#newdirectory
+        img(src='/images/icons/interface/folder.png', width='16', height='16')
+      span.col-md-1.mbtn
+        img(src='/images/icons/interface/move.png', width='16', height='16')
+      span.col-md-1.mbtn
+        img(src='/images/icons/interface/share.png', width='16', height='16')
+      span.col-md-1.mbtn
+        img(src='/images/icons/interface/comments.png', width='16', height='16')
+      span.col-md-1.mbtn
+        img(src='/images/icons/interface/transfer.png', width='16', height='16')
+      span.col-md-1.mbtn
+        img(src='/images/icons/interface/zip.png', width='16', height='16')
+      span.col-md-1.mbtn
+        img(src='/images/icons/interface/settings.png', width='16', height='16')
+      span.col-md-1.mbtn
+        img(src='/images/icons/interface/logout.png', width='16', height='16')
+  include modules/uploadform.jade
+  include modules/properties.jade

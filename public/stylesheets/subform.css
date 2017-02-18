@@ -1,0 +1,29 @@
+#uplcont, #newdir {
+  width: 20%;
+  background-color: #414141;
+  position: fixed;
+  top: 30%;
+  left: 40%;
+  padding: 8px;
+  display: none;
+}
+
+#currdir {
+  display: none;
+}
+
+#uplbox, #dirname {
+  width: 82%;
+  border-style: none none solid none;
+  border-width: 1px;
+  border-color: #888888;
+  background: none;
+  /*font-size: 2em;*/
+  color: white;
+  display: inline-block;
+}
+
+#sbtn, #dirsub {
+  width: 16%;
+  display: inline-block;
+}
