@@ -17,6 +17,7 @@ const config = require('./config');
 mongoose.connect('mongodb://localhost/' + config.dbname);
 const db = mongoose.connection;
 
+// Routes
 const index = require('./routes/index');
 const files = require('./routes/files');
 const login = require('./routes/login');
@@ -76,6 +77,7 @@ app.use(function(req, res, next) {
     next();
 })
 
+// More routing stuff
 app.use('/', index);
 app.use('/files', files);
 app.use('/login', login);
