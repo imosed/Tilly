@@ -1,20 +1,52 @@
 - var d = '16'
 - var pic = '/images/icons/file-picture.png'
 - var music = '/images/icons/file-music.png'
+- var video = '/images/icons/file-video.png'
 - var doc = '/images/icons/file-text2.png'
+- var zip = '/images/icons/file-zip.png'
 - var folder = '/images/icons/folder.png'
 case f.extension
   when '.jpg'
     img(src=pic, height=d, width=d)
+  when '.jpeg'
+    img(src=pic, height=d, width=d)
   when '.png'
+    img(src=pic, height=d, width=d)
+  when '.gif'
+    img(src=pic, height=d, width=d)
+  when '.psd'
+    img(src=pic, height=d, width=d)
+  when '.xcf'
     img(src=pic, height=d, width=d)
   when '.mp3'
     img(src=music, height=d, width=d)
+  when '.wma'
+    img(src=music, height=d, width=d)
   when '.wav'
     img(src=music, height=d, width=d)
+  when '.flac'
+    img(src=music, height=d, width=d)
+  when '.oga'
+    img(src=music, height=d, width=d)
+  when '.webm'
+    img(src=video, height=d, width=d)
+  when '.mp4'
+    img(src=video, height=d, width=d)
+  when '.ogv'
+    img(src=video, height=d, width=d)
   when '.pdf'
     img(src=doc, height=d, width=d)
   when '.doc'
     img(src=doc, height=d, width=d)
+  when '.html'
+    img(src=doc, height=d, width=d)
+  when '.zip'
+    img(src=zip, height=d, width=d)
+  when '.rar'
+    img(src=zip, height=d, width=d)
+  when '.7z'
+    img(src=zip, height=d, width=d)
+  when '.gz'
+    img(src=zip, height=d, width=d)
   when undefined
     img(src=folder, height=d, width=d)

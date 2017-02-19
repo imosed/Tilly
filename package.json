@@ -32,6 +32,8 @@
     "gulp": "^3.9.1",
     "gulp-less": "^3.3.0",
     "gulp-nodemon": "^2.2.1",
-    "less": "^2.7.2"
+    "less": "^2.7.2",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-csscomb": "0.0.2"
   }
 }
