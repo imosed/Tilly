@@ -58,180 +58,115 @@ var opts = {
   position: 'absolute'
 }
 
-$(document)
-  .ready(function() {
-    setTimeout(function() {
-      $('#flashmessage')
-        .animate({
-          'opacity': '0'
-        }, 1500, () => {
-          $('#flashmessage')
-            .css('display', 'none')
-            .css('opacity', '1');
-        });
-    }, 4000);
+$(document).ready(function() {
+  setTimeout(function() {
+    $('#flashmessage').animate({
+      'opacity': '0'
+    }, 1500, () => {
+      $('#flashmessage').css('display', 'none').css('opacity', '1');
+    });
+  }, 4000);
 
-    $(document)
-      .on('click', '.fileobj', function(e) {
-        var propertiesFilename = e.target.firstChild.data;
-        $('#fileprop')
-          .css('display', 'block');
-        $('#forfile')
-          .text(propertiesFilename);
-        var target = document.getElementById('load-ind');
-        var spinner = new Spinner(opts)
-          .spin(target);
-        $.ajax({
-            url: 'filestats/' + encodeURIComponent($('#currdir')
-              .val()) + '/' + propertiesFilename,
-            context: document.body
-          })
-          .done(function(data) {
-            spinner.stop();
-            $('#fpdownload')
-              .click(function() {
-                window.location.href = '/servedownload/' + r.display_name.toString();
-              });
-            var r = data;
-            var ot = (r.obj_type == 'f' ? 'File' : 'Directory')
-            $('#ftype')
-              .text(ot);
-            $('#fowner')
-              .text(r.owner.username);
-            $('#fsize')
-              .text(preciseRound(r.size / 1024) + 'KB');
-            $('#fext')
-              .text(r.extension);
-            $('#fpath')
-              .text(r.path);
-            $('#fdate')
-              .text(r.date_added);
-            $('#fshared')
-              .text(r.shared);
-            $('#fpprev')
-              .attr('src', ('/user_content/' + r.display_name.toString()));
-          })
+  $(document).on('click', '.fileobj', function(e) {
+    var propertiesFilename = e.target.firstChild.data;
+    $('#fileprop').css('display', 'block');
+    $('#forfile').text(propertiesFilename);
+    var target = document.getElementById('load-ind');
+    var spinner = new Spinner(opts).spin(target);
+    $.ajax({
+      url: 'filestats/' + encodeURIComponent($('#currdir').val()) + '/' + propertiesFilename,
+      context: document.body
+    }).done(function(data) {
+      spinner.stop();
+      $('#fpdownload').click(function() {
+        window.location.href = '/servedownload/' + r.display_name.toString();
       });
-
-    $(document)
-      .on('click', '.dir', function(e) {
-        var targetDirectory = '';
-        var targetElement = $(e.target);
-        var currentSubDir = $('#currdir')
-          .val()
-          .split('/');
-        currentSubDir.splice(0, 3);
-        currentSubDir = currentSubDir.join('/');
-        if ($(targetElement)
-          .hasClass('filename')) targetDirectory = $(targetElement)
-          .text();
-        else targetDirectory = $(targetElement)
-          .find('.filename')
-          .text();
-        window.location = '/files/' + encodeURIComponent(currentSubDir + targetDirectory + '/');
-      });
-
-    $('#toparent')
-      .click(function() {
-        var qPath = '';
-        var currentPath = (window.location.href)
-          .split('/');
-        var pathLength = currentPath.length;
-        if (pathLength > 4) {
-          currentPath = decodeURIComponent(currentPath[currentPath.length - 1]);
-          currentPath = currentPath.split('/');
-          currentPath.splice(-2, 2);
-          if (currentPath.length == 0) qPath = encodeURIComponent(currentPath.join('/'));
-          else qPath = encodeURIComponent(currentPath.join('/') + '/');
-          window.location.href = '/files/' + qPath;
-        }
-      });
-
-    $('.fpclose')
-      .click(function() {
-        $('#fileprop')
-          .css('display', 'none');
-      });
-
-    $('#uplbtn')
-      .click(function() {
-        $('#uplcont')
-          .css('display', 'block');
-        $('#uplbox')
-          .val('');
-      });
-
-    $('#uplform')
-      .submit(function() {
-        $(this)
-          .ajaxSubmit({
-            error: function(xhr) {
-              status('Error: ' + xhr.status);
-            },
-            success: function(response) {
-              var r = JSON.parse(response);
-              var iconimg = $('<img>')
-                .attr('src', getFileIcon(r.extension))
-                .attr('width', '16')
-                .attr('height', '16');
-              var fname = $('<span>')
-                .addClass('filename');
-              $(fname)
-                .text(r.display_name);
-              var fo = $('.fileobj')
-                .first()
-                .clone()
-                .css('display', 'block');
-              $($(fo)
-                  .children()[0])
-                .text('');
-              $($(fo)
-                  .children()[0])
-                .append($(iconimg));
-              $($(fo)
-                  .children()[0])
-                .append($(fname));
-              $($(fo)
-                  .children()[1])
-                .text(preciseRound(r.size / 1024) + 'KB');
-              $($(fo)
-                  .children()[2])
-                .text(r.owner);
-              $($(fo)
-                  .children()[3])
-                .text(moment(r.date_added)
-                  .format('MM-DD-YYYY'));
-              $($(fo)
-                  .children()[4])
-                .text(r.shared);
-              $('.filelist')
-                .append($(fo));
-            }
-          });
-        $('#uplcont')
-          .css('display', 'none');
-        return false;
-      });
-
-    $('#newdirectory')
-      .click(function() {
-        $('#newdir')
-          .css('display', 'block');
-      });
-
-    $('#dirform')
-      .submit(function() {
-        $(this)
-          .ajaxSubmit({
-            error: function(xhr) {
-              status('Error: ' + xhr.status);
-            },
-            success: function(response) {
-              status(response);
-            }
-          })
-        $('#newdir')
-          .css('display', 'none');
-        return false;
-      });
+      var r = data;
+      var ot = (r.obj_type == 'f' ? 'File' : 'Directory')
+      $('#ftype').text(ot);
+      $('#fowner').text(r.owner.username);
+      $('#fsize').text(preciseRound(r.size / 1024) + 'KB');
+      $('#fext').text(r.extension);
+      $('#fpath').text(r.path);
+      $('#fdate').text(r.date_added);
+      $('#fshared').text(r.shared);
+      $('#fpprev').attr('src', ('/user_content/' + r.display_name.toString()));
+    })
   });
+
+  $(document).on('click', '.dir', function(e) {
+    var targetDirectory = '';
+    var targetElement = $(e.target);
+    var currentSubDir = $('#currdir').val().split('/');
+    currentSubDir.splice(0, 3);
+    currentSubDir = currentSubDir.join('/');
+    if ($(targetElement).hasClass('filename')) targetDirectory = $(targetElement).text();
+    else targetDirectory = $(targetElement).find('.filename').text();
+    window.location = '/files/' + encodeURIComponent(currentSubDir + targetDirectory + '/');
+  });
+
+  $('#toparent').click(function() {
+    var qPath = '';
+    var currentPath = (window.location.href).split('/');
+    var pathLength = currentPath.length;
+    if (pathLength > 4) {
+      currentPath = decodeURIComponent(currentPath[currentPath.length - 1]);
+      currentPath = currentPath.split('/');
+      currentPath.splice(-2, 2);
+      if (currentPath.length == 0) qPath = encodeURIComponent(currentPath.join('/'));
+      else qPath = encodeURIComponent(currentPath.join('/') + '/');
+      window.location.href = '/files/' + qPath;
+    }
+  });
+
+  $('.fpclose').click(function() {
+    $('#fileprop').css('display', 'none');
+  });
+
+  $('#uplbtn').click(function() {
+    $('#uplcont').css('display', 'block');
+    $('#uplbox').val('');
+  });
+
+  $('#uplform').submit(function() {
+    $(this).ajaxSubmit({
+      error: function(xhr) {
+        status('Error: ' + xhr.status);
+      },
+      success: function(response) {
+        var r = JSON.parse(response);
+        var iconimg = $('<img>').attr('src', getFileIcon(r.extension)).attr('width', '16').attr('height', '16');
+        var fname = $('<span>').addClass('filename');
+        $(fname).text(r.display_name);
+        var fo = $('.fileobj').first().clone().css('display', 'block');
+        $($(fo).children()[0]).text('');
+        $($(fo).children()[0]).append($(iconimg));
+        $($(fo).children()[0]).append($(fname));
+        $($(fo).children()[1]).text(preciseRound(r.size / 1024) + 'KB');
+        $($(fo).children()[2]).text(r.owner);
+        $($(fo).children()[3]).text(moment(r.date_added).format('MM-DD-YYYY'));
+        $($(fo).children()[4]).text(r.shared);
+        $('.filelist').append($(fo));
+      }
+    });
+    $('#uplcont').css('display', 'none');
+    return false;
+  });
+
+  $('#newdirectory').click(function() {
+    $('#newdir').css('display', 'block');
+  });
+
+  $('#dirform').submit(function() {
+    $(this).ajaxSubmit({
+      error: function(xhr) {
+        status('Error: ' + xhr.status);
+      },
+      success: function(response) {
+        status(response);
+      }
+    })
+    $('#newdir').css('display', 'none');
+    return false;
+  });
+});

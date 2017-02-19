@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
   username = req.body.username;
   password = req.body.password;
   email = req.body.email;
-  group = 'default';  //req.body.group;
+  group = 'default'; //req.body.group;
   storage_limit = req.body.storage;
   join_date = new Date();
 
@@ -24,7 +24,9 @@ router.post('/', function(req, res, next) {
   let errs = req.validationErrors();
 
   if (errs) {
-    res.render('register', {errs: errs});
+    res.render('register', {
+      errs: errs
+    });
   } else {
     var newUser = new User({
       username: username,
@@ -35,17 +37,19 @@ router.post('/', function(req, res, next) {
       join_date: join_date
     });
     filesystem.mkdir(path.resolve('storage/', newUser._id + ''), (err) => {
-      if(err) console.log(err);
+      if (err) console.log(err);
     });
-    User.registerUser(newUser, function(err, user){
-      if(err) throw err;
+    User.registerUser(newUser, function(err, user) {
+      if (err) throw err;
       res.redirect('/');
     });
   }
 });
 
 router.get('/', function(req, res, next) {
-  res.render('register', {title: 'Nubes: Registration'});
+  res.render('register', {
+    title: 'Nubes: Registration'
+  });
 });
 
 module.exports = router;

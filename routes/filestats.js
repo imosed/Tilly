@@ -12,24 +12,34 @@ function cp(src, dst, callback) {
   dst = dst.toString();
   var cbRan = false;
   var readSource = fs.createReadStream(src);
-  readSource.on('error', (err) => { if(err) done(err); });
+  readSource.on('error', (err) => {
+    if (err) done(err);
+  });
 
   var writeDest = fs.createWriteStream(dst);
-  writeDest.on('error', (err) => { if(err) done(err); });
-  writeDest.on('close', (ex) => { done(); });
+  writeDest.on('error', (err) => {
+    if (err) done(err);
+  });
+  writeDest.on('close', (ex) => {
+    done();
+  });
 
   readSource.pipe(writeDest);
+
   function done(err) {
-    if (!cbRan) { callback(err); cbRan = true; }
+    if (!cbRan) {
+      callback(err);
+      cbRan = true;
+    }
   }
 }
 
 /* Get stats for file (size, owner, etc) */
 router.get('/:path/:filename', function(req, res, next) {
   Listing.getFileStats(req.user, decodeURIComponent(req.params.path), decodeURIComponent(req.params.filename), (err, stats) => {
-    if(err) return res.send('Could not get file stats.');
+    if (err) return res.send('Could not get file stats.');
     cp((path.resolve('storage/', (req.user._id).toString() + '/', stats.file_name)), (path.resolve('public/', 'user_content/', stats.display_name)), (e) => {
-      if(e) return res.send("Could not copy file.");
+      if (e) return res.send("Could not copy file.");
       else res.send(stats);
     });
   });
