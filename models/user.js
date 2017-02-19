@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const Group = require('./group');
 const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = mongoose.Schema({
@@ -12,7 +14,8 @@ const userSchema = mongoose.Schema({
     type: String
   },
   group: {
-    type: String
+    type: Schema.Types.ObjectId,
+    ref: 'Group'
   },
   storage_limit: {
     type: Number,

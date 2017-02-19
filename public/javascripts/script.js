@@ -29,10 +29,33 @@ function getFileIcon(ext) {
   // TODO: Add more extensions
 }
 
+function existsIn(val, arr) {
+  for (var i = 0; i < arr.length; i++) {
+    if (val == arr[i])
+      return true;
+  }
+  return false;
+}
+
 function leadingZero(n) {
   n += '';
   if (n.length == 1) return '0' + n;
   else return n;
+}
+
+function getFileName(ele) {
+  var targetDirectory = '';
+  var targetElement = $(ele);
+  if ($(targetElement).hasClass('filename')) targetDirectory = $(targetElement).text();
+  else if ($(targetElement).find('.filename').length) targetDirectory = $(targetElement).find('.filename').text();
+  else targetDirectory = $(targetElement).parent().find('.filename').text();
+  return targetDirectory;
+}
+
+function replacePreview(withEle, fileName, attrib) {
+  attrib = (attrib || 'src');
+  $('#fpprev').replaceWith(withEle);
+  $('#fpprev').attr(attrib, ('/user_content/' + fileName.toString()));
 }
 
 var opts = {
@@ -68,13 +91,13 @@ $(document).ready(function() {
   }, 4000);
 
   $(document).on('click', '.fileobj', function(e) {
-    var propertiesFilename = e.target.firstChild.data;
+    var propertiesFilename = getFileName(e.target);
     $('#fileprop').css('display', 'block');
     $('#forfile').text(propertiesFilename);
     var target = document.getElementById('load-ind');
     var spinner = new Spinner(opts).spin(target);
     $.ajax({
-      url: 'filestats/' + encodeURIComponent($('#currdir').val()) + '/' + propertiesFilename,
+      url: '/filestats/' + encodeURIComponent($('#currdir').val()) + '/' + propertiesFilename,
       context: document.body
     }).done(function(data) {
       spinner.stop();
@@ -90,18 +113,25 @@ $(document).ready(function() {
       $('#fpath').text(r.path);
       $('#fdate').text(r.date_added);
       $('#fshared').text(r.shared);
-      $('#fpprev').attr('src', ('/user_content/' + r.display_name.toString()));
+      if (existsIn(r.extension, ['.gif', '.png', '.jpg', '.jpeg'])) {
+        replacePreview('<img src="" id="fpprev" />', r.display_name);
+      } else if (existsIn(r.extension, ['.mp3', '.wma', '.wav', '.flac', '.oga'])) {
+        replacePreview('<audio src="" id="fpprev" controls>Your browser does not support the audio tag.</audio>', r.display_name);
+      } else if (existsIn(r.extension, ['.webm', '.mp4', '.ogv'])) {
+        replacePreview('<video src="" id="fpprev" controls>Your browser does not support the video tag.</video>', r.display_name);
+      } else if (existsIn(r.extension, ['.pdf', '.html'])) {
+        replacePreview('<iframe src="" id="fpprev"></iframe>', r.display_name);
+      } else {
+        $('#fpprev').text('Preview not available.');
+      }
     })
   });
 
   $(document).on('click', '.dir', function(e) {
-    var targetDirectory = '';
-    var targetElement = $(e.target);
+    var targetDirectory = getFileName(e.target);
     var currentSubDir = $('#currdir').val().split('/');
     currentSubDir.splice(0, 3);
     currentSubDir = currentSubDir.join('/');
-    if ($(targetElement).hasClass('filename')) targetDirectory = $(targetElement).text();
-    else targetDirectory = $(targetElement).find('.filename').text();
     window.location = '/files/' + encodeURIComponent(currentSubDir + targetDirectory + '/');
   });
 
@@ -121,6 +151,7 @@ $(document).ready(function() {
 
   $('.fpclose').click(function() {
     $('#fileprop').css('display', 'none');
+    $('#fpprev').replaceWith('<div id="fpprev"> </div>');
   });
 
   $('#uplbtn').click(function() {
