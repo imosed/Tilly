@@ -7,146 +7,146 @@
 ***********************/
 
 html, body {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    background-image: url('/images/black-linen.png');
-    background-color: #414141;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  background-color: #414141;
+  background-image: url('/images/black-linen.png');
 }
 
 a {
-    color: #00B7FF;
+  color: #00b7ff;
 }
 
 #flashmessage {
-    position: fixed;
-    top: 384px;
-    max-height: 72px;
-    max-width: 280px;
-    overflow: hidden;
-    padding: 2px 8px;
-    background-color: #FF4545;
-    z-index: 99;
+  position: fixed;
+  z-index: 99;
+  top: 384px;
+  overflow: hidden;
+  max-width: 280px;
+  max-height: 72px;
+  padding: 2px 8px;
+  background-color: #ff4545;
 }
 
 #flashmessage span {
-    text-transform: lowercase;
-    font-size: 2em;
-    color: #FFFFFF;
-    overflow: hidden;
-    height: 100%;
+  font-size: 2em;
+  overflow: hidden;
+  height: 100%;
+  text-transform: lowercase;
+  color: #fff;
 }
 
 #statusbar, div#lbar {
-    position: fixed;
-    bottom: 0;
-    width: inherit;
-    background-color: #414141;
-    padding: 32px 0;
-    height: 110px;
+  position: fixed;
+  bottom: 0;
+  width: inherit;
+  height: 110px;
+  padding: 32px 0;
+  background-color: #414141;
 }
 
 #statusbar span {
-    color: white;
-    vertical-align: middle;
+  vertical-align: middle;
+  color: white;
 }
 
 #menubar {
-    width: inherit;
-    overflow: hidden;
-    padding: 20px 0;
-    position: fixed;
-    bottom: 110px;
-    background-color: #525252;
+  position: fixed;
+  bottom: 110px;
+  overflow: hidden;
+  width: inherit;
+  padding: 20px 0;
+  background-color: #525252;
 }
 
 #maincontent {
-    height: 100%;
-    width: 90%;
-    color: #414141;
-    margin: 0 auto;
-    background-color: #FFFFFF;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  color: #414141;
+  background-color: #fff;
 }
 
 #dbar {
-    position: fixed;
-    top: 0;
-    height: 32px;
-    width: inherit;
+  position: fixed;
+  top: 0;
+  width: inherit;
+  height: 32px;
 }
 
 #fman {
-    position: relative;
-    top: 32px;
+  position: relative;
+  top: 32px;
 }
 
 #directory {
-    width: 100%;
+  width: 100%;
 }
 
 .authbox {
-    margin: 0 2%;
-    width: 46%;
-    color: white;
+  width: 46%;
+  margin: 0 2%;
+  color: white;
 }
 
 #directory, .authbox {
-    background-color: #414141;
-    border-style: none none solid none;
-    border-color: #888888;
-    border-width: 1px;
-    padding: 4px 8px;
-    font-family: 'Open Sans';
-    font-size: 2em;
+  font-family: 'Open Sans';
+  font-size: 2em;
+  padding: 4px 8px;
+  border-width: 1px;
+  border-style: none none solid none;
+  border-color: #888;
+  background-color: #414141;
 }
 
 #fileprop {
-  display: none;
   position: fixed;
+  z-index: 99;
   top: 18%;
   left: 35%;
+  display: none;
+  overflow-y: auto;
   width: 28%;
   height: 64%;
-  z-index: 99;
-  background-color: white;
-  border: black thin solid;
   padding: 1%;
-  overflow-y: auto;
+  border: black thin solid;
+  background-color: white;
 }
 
 #fpdownload {
-  background-color: #DE1C1C;
-  border: thin solid #414141;
-  color: white;
   font-weight: bold;
-  padding: 8px 32px;
   margin: 12px 0;
+  padding: 8px 32px;
+  color: white;
+  border: thin solid #414141;
+  background-color: #de1c1c;
 }
 
 #propheading {
-  border-bottom: #939393 thin solid;
   padding-bottom: 4px;
+  border-bottom: #939393 thin solid;
 }
 
 #forfile {
-  font-weight: bold;
   font-size: 1.25em;
-  width: 88%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-weight: bold;
   display: inline-block;
+  overflow: hidden;
+  width: 88%;
+  text-overflow: ellipsis;
 }
 
 #prevcont {
   width: 100%;
+  margin-top: 4px;
   padding: 4px;
   border: #939393 thin solid;
-  margin-top: 4px;
 }
 
 #prevlbl {
@@ -162,81 +162,81 @@ a {
 }
 
 .fpclose {
-  height: 100%;
-  width: 4%;
   float: right;
-  text-align: center;
+  width: 4%;
+  height: 100%;
   cursor: pointer;
+  text-align: center;
 }
 
 .sbbutton {
-    text-align: center;
-    cursor: pointer;
-    font-weight: bold;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
 }
 
 .sb-xs {
-    font-size: 1em;
+  font-size: 1em;
 }
 
 .sb-s {
-    font-size: 1.33em;
+  font-size: 1.33em;
 }
 
 .sb-m {
-    font-size: 1.67em;
+  font-size: 1.67em;
 }
 
 .sb-l {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 .sb-xl {
-    font-size: 2.33em;
+  font-size: 2.33em;
 }
 
 .mbtn {
-    color: #ffffff;
-    text-align: center;
-    cursor: pointer;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
 }
 
 .fih {
-    height: 100%;
-    background-color: #45FF7A;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 6px;
+  font-weight: bold;
+  height: 100%;
+  padding-top: 6px;
+  text-align: center;
+  color: white;
+  background-color: #45ff7a;
 }
 
 .fih:hover {
-    cursor: pointer;
-    background-color: #31DE62;
+  cursor: pointer;
+  background-color: #31de62;
 }
 
 .filename {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
 .fileobj, .dir, #toparent {
-    overflow: hidden;
-    padding: 8px 0;
-    cursor: pointer;
+  overflow: hidden;
+  padding: 8px 0;
+  cursor: pointer;
 }
 
 .fileobj:hover, .dir:hover, #toparent:hover {
-    background-color: #BBBBBB;
-    color: white;
+  color: white;
+  background-color: #bbb;
 }
 
 .flbl {
   font-weight: bold;
-  width: 30%;
   display: inline-block;
+  width: 30%;
 }
 
 .fpfield {
-  padding: 4px 2px;
   margin: 2px 0;
+  padding: 4px 2px;
 }

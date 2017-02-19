@@ -6,7 +6,7 @@ block content
   script(type='text/javascript', src='/javascripts/spin.min.js')
   script(type='text/javascript', src='/javascripts/script.js')
   script(type='text/javascript', src='/javascripts/moment.js')
-  input#currdir(type='text', value=navPath)
+  input#currdir(type='text', value=navpath)
   #maincontent
     #waiting
     #dbar
@@ -20,9 +20,15 @@ block content
         each m in messages
           span= m
       ul.list-group.filelist
-        if homeDir
+        if homedir
           li.list-group-item#toparent
             span.col-md-12 ..
+        li.list-group-item.fileobj(style='display: none;')
+          span.col-md-4
+          span.col-md-2 0
+          span.col-md-2 -
+          span.col-md-2 -
+          span.col-md-2 -
         if files
           each f in files
             li.list-group-item(class=f.obj_type == 'd' ? 'dir' : 'fileobj')
@@ -38,7 +44,7 @@ block content
           p There's nothing here!
     #statusbar
       span.col-md-9
-        input#directory(type='text', value=navPath)
+        input#directory(type='text', value=navpath)
       span.col-md-1.sbbutton.sb-l#uplbtn
         img(src='/images/icons/interface/upload.png', width='32', height='32')
       span.col-md-1.sbbutton.sb-l

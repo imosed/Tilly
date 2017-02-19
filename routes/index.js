@@ -3,9 +3,9 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', {
-        title: 'Tilly: Home'
-    });
+  res.render('index', {
+    title: 'Tilly: Home'
+  });
 });
 
 module.exports = router;
