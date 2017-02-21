@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const compress = require('compression');
 const session = require('express-session');
 const expressValidator = require('express-validator');
 const flash = require('connect-flash');
@@ -50,6 +51,8 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+app.use(compress());
 
 app.use(passport.initialize());
 app.use(passport.session());

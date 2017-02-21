@@ -1,5 +1,8 @@
 extends layout
 
+block top
+  link(rel='stylesheet', href='/stylesheets/less/forms.css')
+
 block content
   #maincontent
     form(action='/register', method='POST')
@@ -18,7 +21,7 @@ block content
       .form-group
         label Storage Limit
         input(type='number', name='storage')
-      input(type='submit', value='Sign up')
+      button(type='submit') Sign up
 
     if errs
       each error in errs

@@ -9,26 +9,6 @@ function preciseRound(n) {
   return n.toString();
 }
 
-function getFileIcon(ext) {
-  switch (ext) {
-    case ('.jpg'):
-      return '/images/icons/file-picture.png';
-    case ('.png'):
-      return '/images/icons/file-picture.png';
-    case ('.mp3'):
-      return '/images/icons/file-music.png';
-    case ('.wav'):
-      return '/images/icons/file-music.png';
-    case ('.pdf'):
-      return '/images/icons/file-text2.png';
-    case ('.doc'):
-      return '/images/icons/file-text2.png';
-    case undefined:
-      return '/images/icons/folder.png';
-  }
-  // TODO: Add more extensions
-}
-
 function existsIn(val, arr) {
   for (var i = 0; i < arr.length; i++) {
     if (val == arr[i])
@@ -113,7 +93,7 @@ $(document).ready(function() {
       $('#fpath').text(r.path);
       $('#fdate').text(r.date_added);
       $('#fshared').text(r.shared);
-      if (existsIn(r.extension, ['.gif', '.png', '.jpg', '.jpeg'])) {
+      if (existsIn(r.extension, ['.jpg', '.jpeg', '.png', '.gif'])) {
         replacePreview('<img src="" id="fpprev" />', r.display_name);
       } else if (existsIn(r.extension, ['.mp3', '.wma', '.wav', '.flac', '.oga'])) {
         replacePreview('<audio src="" id="fpprev" controls>Your browser does not support the audio tag.</audio>', r.display_name);

@@ -1,0 +1,18 @@
+extends ../layout
+
+block top
+  link(rel='stylesheet',  href='/stylesheets/less/forms.css')
+
+block content
+  #maincontent
+    span#topheading Admin Setup
+    #register-section
+      .form-group.reggroup#adminuser
+        label(for='admuser') Admin username
+        input#admuser(type='text', name='admuser', value='admin', disabled)
+      .form-group.reggroup
+        label(for='admpass') Input password for admin
+        input#admpass(type='password', name='admpass')
+      .form-group.reggroup
+        label(for='admpassconf') Confirm password for admin
+        input#admpassconf(type='password', name='admpassconf')

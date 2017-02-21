@@ -95,14 +95,6 @@ a {
   border: black thin solid;
   background-color: white;
 }
-#fpdownload {
-  font-weight: bold;
-  margin: 12px 0;
-  padding: 8px 32px;
-  color: #FFFFFF;
-  border: thin solid #414141;
-  background-color: #DE1C1C;
-}
 #propheading {
   padding-bottom: 4px;
   border-bottom: #939393;
@@ -149,6 +141,14 @@ a {
   margin: 0 2%;
   color: #FFFFFF;
 }
+.fpaction {
+  font-weight: bold;
+  margin: 12px 2px;
+  padding: 8px 32px;
+  color: #FFFFFF;
+  border: thin solid #414141;
+  background-color: #DE1C1C;
+}
 .fpclose {
   float: right;
   width: 4%;
@@ -189,4 +189,7 @@ a {
 .fpfield {
   margin: 2px 0;
   padding: 4px 2px;
+}
+.reggroup {
+  height: 4%;
 }
