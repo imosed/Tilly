@@ -36,12 +36,12 @@ router.post('/', function(req, res, next) {
       storage_limit: storage_limit,
       join_date: join_date
     });
-    filesystem.mkdir(path.resolve('storage/', newUser._id + ''), (err) => {
-      if (err) console.log(err);
-    });
-    User.registerUser(newUser, function(err, user) {
-      if (err) throw err;
-      res.redirect('/');
+    filesystem.mkdir(path.resolve('storage/', (newUser._id).toString()), (err) => {
+      if (err) res.send(err);
+      User.registerUser(newUser, function(err, user) {
+        if (err) throw err;
+        res.redirect('/');
+      });
     });
   }
 });

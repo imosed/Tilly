@@ -4,7 +4,7 @@ $(document).ready(function() {
       $(this).attr('step', '10');
     }
     if (e.which == 17) {
-      $(this).attr('step', '100');
+      $(this).attr('step', '1000');
     }
   });
   $('.gran').keyup(function(e) {

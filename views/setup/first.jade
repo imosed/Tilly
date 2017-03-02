@@ -7,10 +7,12 @@ block content
   script(type='text/javascript', src='/javascripts/precision.js')
   #maincontent
     span#topheading Global Setup
-    #global-settings
+    form#global-settings(method='post', action='/procsetup/1')
       .form-group.reggroup
         input#openreg(type='checkbox', name='openreg')
         label(for='openreg') Open registration
       .form-group
         label(for='maxspace') Default max space per user (in KB)
-        input.form-control.gran(type='number', name='maxspace', min='0', step='1', placeholder='Hold shift for large changes, ctrl for larger changes')
+        input.setup-form.gran(type='number', name='maxspace', min='0', max='99999999999', step='1', placeholder='Hold shift for large changes, ctrl for larger changes')
+      .form-group
+        button(type='submit') Next part

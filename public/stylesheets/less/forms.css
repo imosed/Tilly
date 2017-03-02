@@ -1,3 +1,7 @@
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
 label {
   font-variant: small-caps;
   color: #969696;
@@ -14,6 +18,12 @@ label {
 #register-section {
   margin: 1% 0;
 }
-#adminuser {
-  display: none;
+.setup-form {
+  border-style: none none solid none;
+  border-width: 1px;
+  border-color: #888888;
+  width: 100%;
+  display: block;
+  margin: 8px 0;
+  -moz-appearance: textfield;
 }
