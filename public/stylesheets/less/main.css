@@ -136,6 +136,12 @@ a {
 #upldir {
   display: none;
 }
+.fpheading {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
 .authbox {
   width: 46%;
   margin: 0 2%;

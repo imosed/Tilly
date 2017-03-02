@@ -5,23 +5,24 @@ block top
 
 block content
   #maincontent
+    span.fpheading Register
     form(action='/register', method='POST')
       .form-group
         label Username
-        input(type='text', name='username')
+        input.form-control(type='text', name='username')
       .form-group
         label Password
-        input(type='password', name='password')
+        input.form-control(type='password', name='password')
       .form-group
         label Email Address
-        input(type='text', name='email')
+        input.form-control(type='text', name='email')
       //- .form-group
       //-   label Group
-      //-   input(type='text', name='group')
+      //-   input.form-control(type='text', name='group')
       .form-group
         label Storage Limit
-        input(type='number', name='storage')
-      button(type='submit') Sign up
+        input.form-control(type='number', name='storage')
+      button.btn.btn-primary.btn-md(type='submit') Sign up
 
     if errs
       each error in errs

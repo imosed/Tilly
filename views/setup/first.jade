@@ -4,15 +4,13 @@ block top
   link(rel='stylesheet',  href='/stylesheets/less/forms.css')
 
 block content
+  script(type='text/javascript', src='/javascripts/precision.js')
   #maincontent
-    span#topheading Admin Setup
-    #register-section
-      .form-group.reggroup#adminuser
-        label(for='admuser') Admin username
-        input#admuser(type='text', name='admuser', value='admin', disabled)
+    span#topheading Global Setup
+    #global-settings
       .form-group.reggroup
-        label(for='admpass') Input password for admin
-        input#admpass(type='password', name='admpass')
-      .form-group.reggroup
-        label(for='admpassconf') Confirm password for admin
-        input#admpassconf(type='password', name='admpassconf')
+        input#openreg(type='checkbox', name='openreg')
+        label(for='openreg') Open registration
+      .form-group
+        label(for='maxspace') Default max space per user (in KB)
+        input.form-control.gran(type='number', name='maxspace', min='0', step='1', placeholder='Hold shift for large changes, ctrl for larger changes')

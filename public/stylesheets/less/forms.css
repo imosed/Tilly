@@ -1,15 +1,4 @@
 label {
-  display: block;
-}
-input {
-  width: 75%;
-  font-size: 2em;
-  border: #c1c1c1 thin solid;
-  border-radius: 3px;
-  background: linear-gradient(#c9c9c9, #dddddd);
-  color: #414141;
-}
-label {
   font-variant: small-caps;
   color: #969696;
   font-weight: bold;
