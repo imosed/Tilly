@@ -6,6 +6,7 @@ const filesystem = require('fs');
 
 var passport = require('passport');
 var User = require('../models/user');
+var Group = require('../models.group');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
@@ -28,19 +29,21 @@ router.post('/', function(req, res, next) {
       errs: errs
     });
   } else {
-    var newUser = new User({
-      username: username,
-      password: password,
-      email: email,
-      group: group,
-      storage_limit: storage_limit,
-      join_date: join_date
-    });
-    filesystem.mkdir(path.resolve('storage/', (newUser._id).toString()), (err) => {
-      if (err) res.send(err);
-      User.registerUser(newUser, function(err, user) {
-        if (err) throw err;
-        res.redirect('/');
+    Group.getObjByName('default', function(err, grp) {
+      var newUser = new User({
+        username: username,
+        password: password,
+        email: email,
+        group: grp._id,
+        storage_limit: storage_limit,
+        join_date: join_date
+      });
+      filesystem.mkdir(path.resolve('storage/', (newUser._id).toString()), (err) => {
+        if (err) res.send(err);
+        User.registerUser(newUser, function(err, user) {
+          if (err) throw err;
+          res.redirect('/');
+        });
       });
     });
   }

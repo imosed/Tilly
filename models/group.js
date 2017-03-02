@@ -15,3 +15,9 @@ const Group = module.exports = mongoose.model('Group', groupSchema);
 module.exports.createGroup = function(newGroup, callback) {
   Group.create(newGroup, callback);
 }
+
+module.exports.getObjByName = function(groupName, callback) {
+  Group.findOne({
+    name: groupName
+  }, callback);
+}
