@@ -8,8 +8,9 @@ block content
   #maincontent
     span#topheading Admin Setup
     if errs
-      each e in errs
-        li= e.msg
+      ul
+        each e in errs
+          li= e.msg
     form#register-section(method='post', action='/procsetup/2')
       .form-group.reggroup#adminuser
       .form-group.reggroup

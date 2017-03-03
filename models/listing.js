@@ -43,23 +43,20 @@ module.exports.indexFile = function(newFile, callback) {
 
 module.exports.getFileStats = function(user, path, filename, callback) {
   Listing.findOne({
-      owner: user._id,
-      path: path,
-      display_name: filename
-    }, callback)
-    .populate('owner');
+    owner: user._id,
+    path: path,
+    display_name: filename
+  }, callback).populate('owner');
 }
 
 module.exports.getListingsForUser = function(user, navpath, callback) {
-  const query = {
-    owner: user._id,
-    path: navpath
-  };
-  Listing.find(query, callback)
+  Listing.find({
+      owner: user._id,
+      path: navpath
+    }, callback)
     .sort([
       ['title', 'ascending']
-    ])
-    .populate('owner');
+    ]).populate('owner');
 }
 
 module.exports.createDirectory = function(newDir, callback) {

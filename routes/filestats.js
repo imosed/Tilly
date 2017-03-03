@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const User = require('../models/user');
 const Listing = require('../models/listing');
@@ -37,9 +37,9 @@ function cp(src, dst, callback) {
 /* Get stats for file (size, owner, etc) */
 router.get('/:path/:filename', function(req, res, next) {
   Listing.getFileStats(req.user, decodeURIComponent(req.params.path), decodeURIComponent(req.params.filename), (err, stats) => {
-    if (err) return res.send('Could not get file stats.');
+    if (err) res.send('Could not get file stats.');
     cp((path.resolve('storage/', (req.user._id).toString() + '/', stats.file_name)), (path.resolve('public/', 'user_content/', stats.display_name)), (e) => {
-      if (e) return res.send("Could not copy file.");
+      if (e) res.send("Could not copy file.");
       else res.send(stats);
     });
   });

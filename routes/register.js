@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const path = require('path');
 const filesystem = require('fs');
 
-var passport = require('passport');
-var User = require('../models/user');
-var Group = require('../models/group');
+const passport = require('passport');
+const User = require('../models/user');
+const Group = require('../models/group');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {

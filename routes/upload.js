@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const User = require('../models/user');
-var Listing = require('../models/listing');
+const Listing = require('../models/listing');
 
 const path = require('path');
 const multer = require('multer');

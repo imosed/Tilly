@@ -36,7 +36,8 @@ block content
                 include modules/fileicons.jade
                 span.filename= f.display_name
               span.col-md-2
-                | #{preciseRound(f.size / 1024)}KB
+                if f.obj_type == 'f'
+                  | #{preciseRound(f.size / 1024)}KB
               span.col-md-2= f.owner.username
               span.col-md-2= moment(f.date_added).format('MM-DD-YYYY')
               span.col-md-2= f.shared

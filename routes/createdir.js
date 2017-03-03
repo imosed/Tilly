@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const User = require('../models/user');
 const Listing = require('../models/listing');
@@ -20,8 +20,8 @@ const upload = multer({
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
-  var listing = new Listing();
-  var dateCreated = new Date();
+  const listing = new Listing();
+  const dateCreated = new Date();
   listing.display_name = req.body.dirname;
   listing.file_name = req.body.dirname;
   listing.path = req.body.createin;
