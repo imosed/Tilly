@@ -6,14 +6,13 @@ const filesystem = require('fs');
 
 var passport = require('passport');
 var User = require('../models/user');
-var Group = require('../models.group');
+var Group = require('../models/group');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
   username = req.body.username;
   password = req.body.password;
   email = req.body.email;
-  group = 'default'; //req.body.group;
   storage_limit = req.body.storage;
   join_date = new Date();
 

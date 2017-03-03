@@ -77,25 +77,41 @@ router.post('/procsetup/:step*?', function(req, res, next) {
         let storage_limit = req.body.admstlim;
         let join_date = new Date();
 
-        let Admin = new User({
-          username: username,
-          password: password,
-          email: email,
-          group: group,
-          storage_limit: storage_limit,
-          join_date: join_date
+        req.checkBody('admpass', 'Passwords don\'t match.').equals('admpassconf');
+        req.checkBody('admemail', 'Email field is not an email.').isEmail();
+        req.checkBody('admstlim', 'Storage limit field is not a number within 0-99,999,999,999.').isInt({
+          min: 0,
+          max: 99999999999
         });
 
-        fs.mkdir(path.resolve('storage/', (Admin._id).toString()), (error) => {
-          if (error) res.send(error);
-          User.registerUser(Admin, function(err, user) {
-            if (err) res.send(err);
-            res.redirect('/');
+        let verrs = req.validationErrors();
+
+        if (verrs) {
+          res.render('setup/second', {
+            errs: verrs
           });
-        });
+        } else {
+          let Admin = new User({
+            username: username,
+            password: password,
+            email: email,
+            group: group,
+            storage_limit: storage_limit,
+            join_date: join_date
+          });
+
+          fs.mkdir(path.resolve('storage/', (Admin._id).toString()), (error) => {
+            if (error) res.send(error);
+            User.registerUser(Admin, function(err, user) {
+              if (err) res.send(err);
+              res.redirect('/');
+            });
+          });
+        }
       });
       break;
   }
 });
 
+module.exports = router;
 module.exports = router;

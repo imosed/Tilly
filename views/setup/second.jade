@@ -4,8 +4,12 @@ block top
   link(rel='stylesheet',  href='/stylesheets/less/forms.css')
 
 block content
+  script(type='text/javascript', src='/javascripts/precision.js')
   #maincontent
     span#topheading Admin Setup
+    if errs
+      each e in errs
+        li= e.msg
     form#register-section(method='post', action='/procsetup/2')
       .form-group.reggroup#adminuser
       .form-group.reggroup
@@ -19,6 +23,6 @@ block content
         input.setup-form#admemail(type='email', name='admemail')
       .form-group.reggroup
         label(for='email') Admin storage limit
-        input.setup-form#admstlim(type='number', name='admstlim')
+        input.setup-form.gran(type='number', name='admstlim', min='0', max='99999999999', step='1', placeholder='Hold shift for large changes, ctrl for larger changes')
       .form-group
         button(type='submit') Finish
