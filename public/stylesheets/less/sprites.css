@@ -1,0 +1,66 @@
+.sprite {
+  background-image: url('/images/icons/interface/spritesheet.png');
+  background-repeat: no-repeat;
+  display: block;
+  margin: 0 auto;
+}
+.sprite.sprite-check {
+  background-position: -5px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-comments {
+  background-position: -31px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-download {
+  background-position: -57px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-folder {
+  background-position: -83px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-logout {
+  background-position: -109px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-move {
+  background-position: -135px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-settings {
+  background-position: -161px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-share {
+  background-position: -187px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-transfer {
+  background-position: -213px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-uparrow2 {
+  background-position: -239px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-upload {
+  background-position: -265px -5px;
+  width: 16px;
+  height: 16px;
+}
+.sprite.sprite-zip {
+  background-position: -291px -5px;
+  width: 16px;
+  height: 16px;
+}

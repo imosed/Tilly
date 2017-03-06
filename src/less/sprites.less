@@ -1,0 +1,60 @@
+.stitches-sprite(@x: 0, @y: 0, @width: 0, @height: 0) {
+    background-position: @x @y;
+    width: @width;
+    height: @height;
+}
+
+.sprite {
+    background-image: url('/images/icons/interface/spritesheet.png');
+    background-repeat: no-repeat;
+    display: block;
+    margin: 0 auto;
+
+    &.sprite-check {
+        .stitches-sprite(-5px, -5px, 16px, 16px);
+    }
+
+    &.sprite-comments {
+        .stitches-sprite(-31px, -5px, 16px, 16px);
+    }
+
+    &.sprite-download {
+        .stitches-sprite(-57px, -5px, 16px, 16px);
+    }
+
+    &.sprite-folder {
+        .stitches-sprite(-83px, -5px, 16px, 16px);
+    }
+
+    &.sprite-logout {
+        .stitches-sprite(-109px, -5px, 16px, 16px);
+    }
+
+    &.sprite-move {
+        .stitches-sprite(-135px, -5px, 16px, 16px);
+    }
+
+    &.sprite-settings {
+        .stitches-sprite(-161px, -5px, 16px, 16px);
+    }
+
+    &.sprite-share {
+        .stitches-sprite(-187px, -5px, 16px, 16px);
+    }
+
+    &.sprite-transfer {
+        .stitches-sprite(-213px, -5px, 16px, 16px);
+    }
+
+    &.sprite-uparrow2 {
+        .stitches-sprite(-239px, -5px, 16px, 16px);
+    }
+
+    &.sprite-upload {
+        .stitches-sprite(-265px, -5px, 16px, 16px);
+    }
+
+    &.sprite-zip {
+        .stitches-sprite(-291px, -5px, 16px, 16px);
+    }
+}

@@ -1,5 +1,8 @@
 extends layout
 
+block top
+  link(rel='stylesheet', href='/stylesheets/less/sprites.css')
+
 block content
   script(type='text/javascript', src='/javascripts/jquery.form.js')
   script(type='text/javascript', src='/javascripts/spin.min.js')
@@ -44,32 +47,30 @@ block content
         else
           p There's nothing here!
     #statusbar
-      span.col-md-9
+      span.col-md-10
         input#directory(type='text', value=navpath)
       span.col-md-1.sbbutton.sb-l#uplbtn
-        img(src='/images/icons/interface/upload.png', width='32', height='32')
-      span.col-md-1.sbbutton.sb-l
-        img(src='/images/icons/interface/download.png', width='32', height='32')
+        img#upbtn(src='/images/icons/interface/upload.png')
       span.col-md-1.sbbutton.sb-xl
-        img(src='/images/icons/interface/uparrow2.png', width='28', height='28')
+        img#mnbtn(src='/images/icons/interface/uparrow2.png')
     #menubar
       span.col-md-1.mbtn
-        img(src='/images/icons/interface/check.png', width='16', height='16')
+        span.sprite.sprite-check
       span.col-md-1.mbtn#newdirectory
-        img(src='/images/icons/interface/folder.png', width='16', height='16')
+        span.sprite.sprite-folder
       span.col-md-1.mbtn
-        img(src='/images/icons/interface/move.png', width='16', height='16')
+        span.sprite.sprite-move
       span.col-md-1.mbtn
-        img(src='/images/icons/interface/share.png', width='16', height='16')
+        span.sprite.sprite-share
       span.col-md-1.mbtn
-        img(src='/images/icons/interface/comments.png', width='16', height='16')
+        span.sprite.sprite-comments
       span.col-md-1.mbtn
-        img(src='/images/icons/interface/transfer.png', width='16', height='16')
+        span.sprite.sprite-transfer
       span.col-md-1.mbtn
-        img(src='/images/icons/interface/zip.png', width='16', height='16')
+        span.sprite.sprite-zip
       span.col-md-1.mbtn
-        img(src='/images/icons/interface/settings.png', width='16', height='16')
+        span.sprite.sprite-settings
       span.col-md-1.mbtn
-        img(src='/images/icons/interface/logout.png', width='16', height='16')
+        span.sprite.sprite-logout
   include modules/uploadform.jade
   include modules/properties.jade
