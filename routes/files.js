@@ -8,6 +8,7 @@ const moment = require('moment');
 const User = require('../models/user');
 const Listings = require('../models/listing');
 
+/* Function for rounding file sizes */
 function preciseRound(n) {
   var f = 0;
   if (n < 10) f = 1000;
@@ -19,7 +20,7 @@ function preciseRound(n) {
   return n;
 }
 
-/* GET home page. */
+/* Render directory view for user */
 router.get('/:navpath*?', function(req, res, next) {
   if (req.user) {
     var navPath = (req.params.navpath || '');

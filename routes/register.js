@@ -8,7 +8,7 @@ const passport = require('passport');
 const User = require('../models/user');
 const Group = require('../models/group');
 
-/* GET home page. */
+/* After form submission, add newly registered user to database */
 router.post('/', function(req, res, next) {
   username = req.body.username;
   password = req.body.password;

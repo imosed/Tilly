@@ -6,12 +6,12 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const User = require('../models/user');
 
-/* GET home page. */
-
+/* If logged in, redirect to /files */
 router.get('/', function(req, res) {
   res.redirect('/files');
 });
 
+/* Allow user to log in */
 passport.use(new LocalStrategy((username, password, done) => {
   User.getUserByUsername(username, (err, user) => {
     if (err) throw err;
@@ -35,6 +35,7 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+/* If login is successful, redirect to /files */
 router.post('/', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/files',

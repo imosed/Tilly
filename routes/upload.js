@@ -20,7 +20,7 @@ const upload = multer({
   })
   .single('uplbox');
 
-/* GET home page. */
+/* Create a new file listing */
 router.post('/', function(req, res, next) {
   upload(req, res, function(err) {
     var listing = new Listing();
@@ -51,6 +51,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/* Helper function to return JSON values */
 function jsonValue(name, value, noComma) {
   return '"' + name + '": "' + value + '"' + (noComma ? '' : ', ');
 }

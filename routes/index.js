@@ -15,6 +15,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* Setup procedure */
 router.get('/setup/:step*?', function(req, res, next) {
   let step = (req.params.step || '1');
   switch (step) {
@@ -113,5 +114,4 @@ router.post('/procsetup/:step*?', function(req, res, next) {
   }
 });
 
-module.exports = router;
 module.exports = router;

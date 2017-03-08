@@ -1,0 +1,10 @@
+#filecomm.winoverlay
+  #load-ind
+  #propheading
+    span#forfile
+    span.fpclose &times;
+    each comm in comments
+      .commarea
+        .commauth= comm.author
+        .commbody= comm.body
+    button#addcomm Add a comment

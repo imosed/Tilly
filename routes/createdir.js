@@ -18,7 +18,7 @@ const upload = multer({
   storage: storage
 }).single('uplbox');
 
-/* GET home page. */
+/* Create a directory (expects an AJAX request sent from a form) */
 router.post('/', function(req, res, next) {
   const listing = new Listing();
   const dateCreated = new Date();

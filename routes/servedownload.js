@@ -7,7 +7,7 @@ const Listing = require('../models/listing');
 const path = require('path');
 const fs = require('fs');
 
-/* GET home page. */
+/* Serve download to user */
 router.get('/:file', function(req, res, next) {
   res.download(path.resolve('public/', 'user_content/', req.params.file));
 });

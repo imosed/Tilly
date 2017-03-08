@@ -8,7 +8,7 @@ const Comment = require('../models/comment');
 const path = require('path');
 const fs = require('fs');
 
-/* Get stats for file (size, owner, etc) */
+/* Get comments for file */
 router.get('/:path/:filename', function(req, res, next) {
   Listing.getFileStats(req.user, decodeURIComponent(req.params.path), decodeURIComponent(req.params.filename), (err, stats) => {
     if (err) res.send('Could not get file stats.');

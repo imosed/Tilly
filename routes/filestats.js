@@ -7,6 +7,7 @@ const Listing = require('../models/listing');
 const path = require('path');
 const fs = require('fs');
 
+/* Function to copy a file */
 function cp(src, dst, callback) {
   src = src.toString();
   dst = dst.toString();
