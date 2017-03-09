@@ -8,7 +8,7 @@ const commentSchema = mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  body: {
+  comm_body: {
     type: String
   },
   for_file: {

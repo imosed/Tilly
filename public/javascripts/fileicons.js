@@ -48,6 +48,8 @@ function getFileIcon(ext) {
       return '/images/icons/file-zip.png';
     case undefined:
       return '/images/icons/folder.png';
+    default:
+      return '';
   }
   // TODO: Add more extensions
 }

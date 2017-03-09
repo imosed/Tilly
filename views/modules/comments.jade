@@ -1,10 +1,15 @@
 #filecomm.winoverlay
   #load-ind
   #propheading
-    span#forfile
+    span.forfile
     span.fpclose &times;
-    each comm in comments
-      .commarea
-        .commauth= comm.author
-        .commbody= comm.body
-    button#addcomm Add a comment
+  .commlist
+    .commarea('display', 'none')
+      span.commauth
+      p.commbody
+  span There are no comments here yet!
+  form#commform(method='post', action='/comment')
+    input#cfp.hf(type='text', name='cfp')
+    input#cfn.hf(type='text', name='cfn')
+    textarea#ncb.form-control(name='ncb')
+    button#addcomm.btn.btn-primary.btn-md(type='submit') Submit

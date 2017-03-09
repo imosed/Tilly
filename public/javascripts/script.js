@@ -1,3 +1,5 @@
+var propertiesFilename;
+
 function preciseRound(n) {
   var f = 0;
   if (n < 10) f = 1000;
@@ -70,10 +72,11 @@ $(document).ready(function() {
     });
   }, 4000);
 
-  $(document).on('click', '.fileobj', function(e) {
+  $(document).on('click', '.fileobj', (e) => {
     var propertiesFilename = getFileName(e.target);
     $('#fileprop').css('display', 'block');
-    $('#forfile').text(propertiesFilename);
+    $('.forfile').text(propertiesFilename);
+    $('#cfn').val(propertiesFilename);
     var target = document.getElementById('load-ind');
     var spinner = new Spinner(opts).spin(target);
     $.ajax({
@@ -107,7 +110,7 @@ $(document).ready(function() {
     })
   });
 
-  $(document).on('click', '.dir', function(e) {
+  $(document).on('click', '.dir', (e) => {
     var targetDirectory = getFileName(e.target);
     var currentSubDir = $('#currdir').val().split('/');
     currentSubDir.splice(0, 3);
@@ -130,7 +133,7 @@ $(document).ready(function() {
   });
 
   $('.fpclose').click(function() {
-    $('#fileprop').css('display', 'none');
+    $($(this).parent().parent()).css('display', 'none');
     $('#fpprev').replaceWith('<div id="fpprev"> </div>');
   });
 
@@ -164,6 +167,22 @@ $(document).ready(function() {
     return false;
   });
 
+  $('#commform').submit(function() {
+    $(this).ajaxSubmit({
+      error: function(xhr) {
+        status('Error: ' + xhr.status);
+      },
+      success: function(response) {
+        var r = JSON.parse(response);
+        var co = $('.commarea').first().clone().css('display', 'block');
+        $($(co).children()[0]).text(r.author);
+        $($(co).children()[1]).text(r.comm_body);
+        $('.commlist').append($(co));
+      }
+    });
+    return false;
+  });
+
   $('#newdirectory').click(function() {
     $('#newdir').css('display', 'block');
   });
@@ -180,4 +199,10 @@ $(document).ready(function() {
     $('#newdir').css('display', 'none');
     return false;
   });
+
+  $('#fpcomment').click(function() {
+    $('#fileprop').css('display', 'none');
+    $('#filecomm').css('display', 'block');
+    $('#cfp').val($('#directory').val());
+  })
 });

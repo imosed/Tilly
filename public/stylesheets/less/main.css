@@ -79,7 +79,7 @@ a {
   background-color: #414141;
   width: 100%;
 }
-#fileprop {
+.winoverlay {
   position: fixed;
   z-index: 99;
   top: 18%;
@@ -96,7 +96,7 @@ a {
   padding-bottom: 4px;
   border-bottom: #939393;
 }
-#forfile {
+.forfile {
   font-size: 16px;
   font-weight: bold;
   display: inline-block;
@@ -129,8 +129,7 @@ a {
   color: white;
   background-color: #BBBBBB;
 }
-#createin,
-#upldir {
+.hf {
   display: none;
 }
 .fpheading {

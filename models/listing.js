@@ -62,3 +62,10 @@ module.exports.getListingsForUser = function(user, navpath, callback) {
 module.exports.createDirectory = function(newDir, callback) {
   Listing.create(newDir, callback);
 }
+
+module.exports.getIdByName = function(path, name, callback) {
+  Listing.findOne({
+    path: path,
+    display_name: name
+  }, callback)._id;
+};
