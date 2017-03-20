@@ -187,6 +187,14 @@ a {
   cursor: pointer;
   background-color: #31DE62;
 }
+.commarea {
+  padding: 0 0 4px 0;
+  margin: 0 0 12px 0;
+  border-bottom: 1px solid #ccc;
+}
+.commauth {
+  font-weight: bold;
+}
 .filename {
   margin-left: 8px;
 }

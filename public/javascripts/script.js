@@ -204,5 +204,20 @@ $(document).ready(function() {
     $('#fileprop').css('display', 'none');
     $('#filecomm').css('display', 'block');
     $('#cfp').val($('#directory').val());
-  })
+    $.ajax({
+      url: '/getcomments/' + encodeURIComponent($('#directory').val()) + '/' + $('#cfn').val(),
+      context: document.body
+    }).done(function(data) {
+      if (data.length > 0) {
+        $('#nocomm').remove();
+      }
+      for (var i = 0; i < data.length; i++) {
+        data = data[i]
+        var nc = $('.commarea').first().clone().css('display', 'block');
+        $($(nc).children()[0]).text(data.author.username);
+        $($(nc).children()[1]).text(data.comm_body);
+        $('.commlist').append(nc);
+      }
+    });
+  });
 });

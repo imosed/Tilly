@@ -26,5 +26,5 @@ module.exports.commentForFile = function(commObj, callback) {
 module.exports.getCommentsForFile = function(file, callback) {
   Comment.find({
     for_file: file
-  }, callback).populate();
+  }, callback).populate('author');
 }
