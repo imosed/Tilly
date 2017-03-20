@@ -69,3 +69,12 @@ module.exports.getIdByName = function(path, name, callback) {
     display_name: name
   }, callback)._id;
 };
+
+module.exports.shareFile = function(path, name, callback) {
+  Listing.update({
+    path: path,
+    display_name: name
+  }, {
+    shared: true
+  }, callback);
+};

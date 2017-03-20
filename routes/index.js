@@ -78,7 +78,7 @@ router.post('/procsetup/:step*?', function(req, res, next) {
         let storage_limit = req.body.admstlim;
         let join_date = new Date();
 
-        req.checkBody('admpass', 'Passwords don\'t match.').equals('admpassconf');
+        req.checkBody('admpassconf', 'Passwords don\'t match.').equals(req.body.admpass);
         req.checkBody('admemail', 'Email field is not an email.').isEmail();
         req.checkBody('admstlim', 'Storage limit field is not a number within 0-99,999,999,999.').isInt({
           min: 0,

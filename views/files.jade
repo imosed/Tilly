@@ -35,7 +35,7 @@ block content
         if files
           each f in files
             li.list-group-item(class=f.obj_type == 'd' ? 'dir' : 'fileobj')
-              span.col-md-4
+              span.col-md-4.tfsect
                 include modules/fileicons.jade
                 span.filename= f.display_name
               span.col-md-2
@@ -43,7 +43,11 @@ block content
                   | #{preciseRound(f.size / 1024)}KB
               span.col-md-2= f.owner.username
               span.col-md-2= moment(f.date_added).format('MM-DD-YYYY')
-              span.col-md-2= f.shared
+              span.col-md-2.shchk
+                if f.shared == false
+                  input.shchk.form-control(type='checkbox')
+                else
+                  input.shchk.form-control(type='checkbox', checked='true')
         else
           p There's nothing here!
     #statusbar

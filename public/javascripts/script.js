@@ -20,7 +20,7 @@ function existsIn(val, arr) {
 }
 
 function leadingZero(n) {
-  n += '';
+  n = n.toString();
   if (n.length == 1) return '0' + n;
   else return n;
 }
@@ -72,7 +72,7 @@ $(document).ready(function() {
     });
   }, 4000);
 
-  $(document).on('click', '.fileobj', (e) => {
+  $(document).on('click', '.tfsect', (e) => {
     var propertiesFilename = getFileName(e.target);
     $('#fileprop').css('display', 'block');
     $('.forfile').text(propertiesFilename);
@@ -147,8 +147,8 @@ $(document).ready(function() {
       error: function(xhr) {
         status('Error: ' + xhr.status);
       },
-      success: function(response) {
-        var r = JSON.parse(response);
+      success: function(data) {
+        var r = JSON.parse(data);
         var iconimg = $('<img>').attr('src', getFileIcon(r.extension)).attr('width', '16').attr('height', '16');
         var fname = $('<span>').addClass('filename');
         $(fname).text(r.display_name);
@@ -172,12 +172,13 @@ $(document).ready(function() {
       error: function(xhr) {
         status('Error: ' + xhr.status);
       },
-      success: function(response) {
-        var r = JSON.parse(response);
+      success: function(data) {
+        $('#nocomm').css('display', 'none');
+        var r = data;
         var co = $('.commarea').first().clone().css('display', 'block');
         $($(co).children()[0]).text(r.author);
         $($(co).children()[1]).text(r.comm_body);
-        $('.commlist').append($(co));
+        $('.commlist').append(co);
       }
     });
     return false;
@@ -192,8 +193,8 @@ $(document).ready(function() {
       error: function(xhr) {
         status('Error: ' + xhr.status);
       },
-      success: function(response) {
-        status(response);
+      success: function(data) {
+        status(data);
       }
     })
     $('#newdir').css('display', 'none');
@@ -204,20 +205,29 @@ $(document).ready(function() {
     $('#fileprop').css('display', 'none');
     $('#filecomm').css('display', 'block');
     $('#cfp').val($('#directory').val());
+    $('#nocomm').css('display', 'block');
     $.ajax({
       url: '/getcomments/' + encodeURIComponent($('#directory').val()) + '/' + $('#cfn').val(),
       context: document.body
     }).done(function(data) {
       if (data.length > 0) {
-        $('#nocomm').remove();
+        $('#nocomm').css('display', 'none');
       }
       for (var i = 0; i < data.length; i++) {
-        data = data[i]
+        d = data[i]
         var nc = $('.commarea').first().clone().css('display', 'block');
-        $($(nc).children()[0]).text(data.author.username);
-        $($(nc).children()[1]).text(data.comm_body);
+        $($(nc).children()[0]).text(d.author.username);
+        $($(nc).children()[1]).text(d.comm_body);
         $('.commlist').append(nc);
       }
+    });
+  });
+
+  $('#fpshare').click(function() {
+    $.ajax({
+      url: '/sharefile/' + encodeURIComponent($('#directory').val()) + '/' + $('.forfile').first().text()
+    }).done(function() {
+      $('#fshared').text('true');
     });
   });
 });

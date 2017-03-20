@@ -38,6 +38,7 @@ a {
   height: 110px;
   padding: 32px 0;
   background-color: #414141;
+  z-index: 999;
 }
 #statusbar span {
   vertical-align: middle;
@@ -45,7 +46,7 @@ a {
 }
 #menubar {
   position: fixed;
-  bottom: 10%;
+  bottom: 11%;
   overflow: hidden;
   width: inherit;
   padding: 1% 0;
@@ -197,6 +198,9 @@ a {
 }
 .filename {
   margin-left: 8px;
+}
+.shchk {
+  height: auto !important;
 }
 .flbl {
   font-weight: bold;

@@ -29,6 +29,7 @@ const fileStats = require('./routes/filestats');
 const serveDownload = require('./routes/servedownload');
 const newComment = require('./routes/comment');
 const getComments = require('./routes/getcomments');
+const shareFile = require('./routes/sharefile');
 // const listdir = require('./routes/listdir');
 const users = require('./routes/users');
 
@@ -93,6 +94,7 @@ app.use('/filestats', fileStats);
 app.use('/servedownload', serveDownload);
 app.use('/comment', newComment);
 app.use('/getcomments', getComments);
+app.use('/sharefile', shareFile);
 // app.use('/listdir', listdir);
 app.use('/users', users);
 
