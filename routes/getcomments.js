@@ -9,7 +9,7 @@ const path = require('path');
 const fs = require('fs');
 
 /* Get comments for file */
-router.get('/:path/:filename', function(req, res, next) {
+router.get('/:path/:filename', (req, res, next) => {
   Listing.getFileStats(req.user, decodeURIComponent(req.params.path), decodeURIComponent(req.params.filename), (err, stats) => {
     if (err) res.send('Could not get file stats.');
     Comment.getCommentsForFile(stats._id, (e, comms) => {

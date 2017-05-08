@@ -7,11 +7,11 @@ const Listing = require('../models/listing');
 const path = require('path');
 const multer = require('multer');
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: (req, file, cb) => {
     cb(null, path.resolve('storage/', (req.user._id)
       .toString()));
   },
-  filename: function(req, file, cb) {
+  filename: (req, file, cb) => {
     cb(null, file.fieldname + '-' + Date.now());
   }
 });
@@ -21,8 +21,8 @@ const upload = multer({
   .single('uplbox');
 
 /* Create a new file listing */
-router.post('/', function(req, res, next) {
-  upload(req, res, function(err) {
+router.post('/', (req, res, next) => {
+  upload(req, res, (err) => {
     var listing = new Listing();
     var dateUploaded = new Date();
     listing.display_name = req.file.originalname;

@@ -36,7 +36,7 @@ function cp(src, dst, callback) {
 }
 
 /* Get stats for file (size, owner, etc) */
-router.get('/:path/:filename', function(req, res, next) {
+router.get('/:path/:filename', (req, res, next) => {
   Listing.getFileStats(req.user, decodeURIComponent(req.params.path), decodeURIComponent(req.params.filename), (err, stats) => {
     if (err) res.send('Could not get file stats.');
     cp((path.resolve('storage/', (req.user._id).toString() + '/', stats.file_name)), (path.resolve('public/', 'user_content/', stats.display_name)), (e) => {

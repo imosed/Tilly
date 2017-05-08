@@ -8,7 +8,7 @@ const path = require('path');
 const fs = require('fs');
 
 /* Serve download to user */
-router.get('/:file', function(req, res, next) {
+router.get('/:file', (req, res, next) => {
   res.download(path.resolve('public/', 'user_content/', req.params.file));
 });
 

@@ -7,7 +7,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
 /* If logged in, redirect to /files */
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   res.redirect('/files');
 });
 

@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require('express');
 const router = express.Router();
 
@@ -9,14 +11,14 @@ const User = require('../models/user');
 const Group = require('../models/group');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('index', {
     title: 'Tilly: Home'
   });
 });
 
 /* Setup procedure */
-router.get('/setup/:step*?', function(req, res, next) {
+router.get('/setup/:step*?', (req, res, next) => {
   let step = (req.params.step || '1');
   switch (step) {
     case ('1'):
@@ -34,7 +36,7 @@ router.get('/setup/:step*?', function(req, res, next) {
   }
 });
 
-router.post('/procsetup/:step*?', function(req, res, next) {
+router.post('/procsetup/:step*?', (req, res, next) => {
   let step = (req.params.step || '1');
   switch (step) {
     case ('1'):
@@ -54,9 +56,9 @@ router.post('/procsetup/:step*?', function(req, res, next) {
         level: def_group_number
       });
 
-      Group.createGroup(AdmGroup, function(admge) {
+      Group.createGroup(AdmGroup, (admge) => {
         if (admge) res.send(admge);
-        Group.createGroup(DefGroup, function(defge) {
+        Group.createGroup(DefGroup, (defge) => {
           if (defge) res.send(defge);
           fs.open(path.resolve('global.json'), 'w', (err, fd) => {
             if (err) res.send('Could not create global config file!');
@@ -103,7 +105,7 @@ router.post('/procsetup/:step*?', function(req, res, next) {
 
           fs.mkdir(path.resolve('storage/', (Admin._id).toString()), (error) => {
             if (error) res.send(error);
-            User.registerUser(Admin, function(err, user) {
+            User.registerUser(Admin, (err, user) => {
               if (err) res.send(err);
               res.redirect('/');
             });

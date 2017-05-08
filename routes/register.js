@@ -1,3 +1,5 @@
+"use strict";
+
 const express = require('express');
 const router = express.Router();
 
@@ -9,7 +11,7 @@ const User = require('../models/user');
 const Group = require('../models/group');
 
 /* After form submission, add newly registered user to database */
-router.post('/', function(req, res, next) {
+router.post('/', (req, res, next) => {
   username = req.body.username;
   password = req.body.password;
   email = req.body.email;
@@ -28,7 +30,7 @@ router.post('/', function(req, res, next) {
       errs: errs
     });
   } else {
-    Group.getObjByName('default', function(err, grp) {
+    Group.getObjByName('default', (err, grp) => {
       var newUser = new User({
         username: username,
         password: password,
@@ -39,7 +41,7 @@ router.post('/', function(req, res, next) {
       });
       filesystem.mkdir(path.resolve('storage/', (newUser._id).toString()), (err) => {
         if (err) res.send(err);
-        User.registerUser(newUser, function(err, user) {
+        User.registerUser(newUser, (err, user) => {
           if (err) throw err;
           res.redirect('/');
         });
@@ -48,7 +50,7 @@ router.post('/', function(req, res, next) {
   }
 });
 
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.render('register', {
     title: 'Nubes: Registration'
   });

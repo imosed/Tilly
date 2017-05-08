@@ -21,7 +21,7 @@ function preciseRound(n) {
 }
 
 /* Render directory view for user */
-router.get('/:navpath*?', function(req, res, next) {
+router.get('/:navpath*?', (req, res, next) => {
   if (req.user) {
     var navPath = (req.params.navpath || '');
     var homeDir = navPath.length > 0;

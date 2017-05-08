@@ -5,7 +5,7 @@ const Comment = require('../models/comment');
 const Listing = require('../models/listing');
 
 /* Create a new comment */
-router.post('/', function(req, res, next) {
+router.post('/', (req, res, next) => {
   Listing.getIdByName(req.body.cfp, req.body.cfn, (err, fid) => {
     if (err) res.send(err);
     var newComm = new Comment();
