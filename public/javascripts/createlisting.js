@@ -12,7 +12,7 @@ function listfile(jsoninfo) {
       $(d).text(r['display_name']);
     } else {
       $(d).addClass('col-md-2');
-      if(i == 1) $(d).text((preciseRound(r['size'] / 1024) + 'KB'));
+      if(i == 1) $(d).text((readable.humanize(r['size']);
       if(i == 2) $(d).text(r['owner']['username']);
       if(i == 3){
         var upldate = new Date(r['date_added']);

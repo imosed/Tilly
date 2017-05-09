@@ -1,16 +1,5 @@
 var propertiesFilename;
 
-function preciseRound(n) {
-  var f = 0;
-  if (n < 10) f = 1000;
-  else if (n < 100) f = 100;
-  else f = 10;
-  n *= f;
-  n = Math.round(n);
-  n /= f;
-  return n.toString();
-}
-
 function existsIn(val, arr) {
   for (var i = 0; i < arr.length; i++) {
     if (val == arr[i])
@@ -91,7 +80,7 @@ $(document).ready(function() {
       var ot = (r.obj_type == 'f' ? 'File' : 'Directory')
       $('#ftype').text(ot);
       $('#fowner').text(r.owner.username);
-      $('#fsize').text(preciseRound(r.size / 1024) + 'KB');
+      $('#fsize').text(readable.humanize(r.size));
       $('#fext').text(r.extension);
       $('#fpath').text(r.path);
       $('#fdate').text(r.date_added);
@@ -156,7 +145,7 @@ $(document).ready(function() {
         $($(fo).children()[0]).text('');
         $($(fo).children()[0]).append($(iconimg));
         $($(fo).children()[0]).append($(fname));
-        $($(fo).children()[1]).text(preciseRound(r.size / 1024) + 'KB');
+        $($(fo).children()[1]).text(readable.humanize(r.size));
         $($(fo).children()[2]).text(r.owner);
         $($(fo).children()[3]).text(moment(r.date_added).format('MM-DD-YYYY'));
         $($(fo).children()[4]).text(r.shared);

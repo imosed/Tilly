@@ -9,6 +9,7 @@ block content
   script(type='text/javascript', src='/javascripts/fileicons.js')
   script(type='text/javascript', src='/javascripts/script.js')
   script(type='text/javascript', src='/javascripts/moment.js')
+  script(type='text/javascript', src='/javascripts/tilly-requires/readable.js')
   input#currdir(type='text', value=navpath)
   #maincontent
     #waiting
@@ -40,7 +41,7 @@ block content
                 span.filename= f.display_name
               span.col-md-2
                 if f.obj_type == 'f'
-                  | #{preciseRound(f.size / 1024)}KB
+                  | #{humanize(f.size)}
               span.col-md-2= f.owner.username
               span.col-md-2= moment(f.date_added).format('MM-DD-YYYY')
               span.col-md-2.shchk
