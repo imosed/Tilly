@@ -78,3 +78,9 @@ module.exports.shareFile = function(path, name, callback) {
     shared: true
   }, callback);
 };
+
+module.exports.getFileById = function(id, callback) {
+  Listing.findOne({
+    _id: id
+  }, callback).populate('owner');
+}

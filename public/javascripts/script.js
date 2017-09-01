@@ -74,7 +74,7 @@ $(document).ready(function() {
     }).done(function(data) {
       spinner.stop();
       $('#fpdownload').click(function() {
-        window.location.href = '/servedownload/' + r.display_name.toString();
+        window.location.href = '/servedownload/' + r._id.toString();
       });
       var r = data;
       var ot = (r.obj_type == 'f' ? 'File' : 'Directory')

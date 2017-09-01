@@ -1,0 +1,37 @@
+extends layout
+
+block top
+  link(rel='stylesheet', href='/stylesheets/less/landing.css')
+
+block content
+  script(type='text/javascript', src='/javascripts/jquery.form.js')
+  script(type='text/javascript', src='/javascripts/spin.min.js')
+  script(type='text/javascript', src='/javascripts/fileicons.js')
+  script(type='text/javascript', src='/javascripts/script.js')
+  script(type='text/javascript', src='/javascripts/moment.js')
+  script(type='text/javascript', src='/javascripts/tilly-requires/readable.js')
+  input#currdir(type='text', value=navpath)
+  #maincontent
+    #waiting
+    #fman
+      if login
+        #flashmessage
+          each m in messages
+            span= m
+    ul.landingdata
+      li#filename
+        span
+          | #{name}
+      li#size
+        span#sep
+          | #{humanize(size)}
+      li#owner
+        span
+          | Uploaded by
+          | #{owner}
+      li#date
+        span
+          | Uploaded on
+          | #{moment(date).format('MM-DD-YYYY')}
+    form(action='/servedownload/' + file)
+      button#dlbtn(type=submit) Download

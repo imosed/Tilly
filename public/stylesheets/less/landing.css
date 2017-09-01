@@ -1,0 +1,36 @@
+.landingdata {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  padding-top: 15%;
+}
+#filename {
+  font-size: 54px;
+  font-weight: bold;
+}
+#size {
+  font-size: 40px;
+}
+#sep {
+  display: inline-block;
+  width: 40%;
+  border-bottom: 1px solid black;
+  padding-bottom: 2px;
+  margin-bottom: 24px;
+}
+#owner,
+#date {
+  font-size: 32px;
+}
+#dlbtn {
+  display: block;
+  height: 50px;
+  width: 240px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: navy;
+  border: 1px solid white;
+  border-radius: 6px;
+  margin: 0 auto;
+}
