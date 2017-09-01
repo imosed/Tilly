@@ -202,6 +202,10 @@ a {
 .shchk {
   height: auto !important;
 }
+.cb-shared {
+  width: auto !important;
+  margin: 0 auto !important;
+}
 .flbl {
   font-weight: bold;
   display: inline-block;

@@ -16,9 +16,11 @@ router.get('/:navpath*?', (req, res, next) => {
     var navPath = (req.params.navpath || '');
     var homeDir = navPath.length > 0;
     var navPath = '/home/' + req.user.username + '/' + navPath;
+    const first = req.get('referer') == 'http://127.0.0.1:3000/';
     const index = Listings.getListingsForUser(req.user, navPath, (err, files) => {
       if (err) res.send(err);
-      req.flash('login', 'Welcome, ' + req.user.username + '!');
+      if (first)
+        req.flash('login', 'Welcome, ' + req.user.username + '!');
       res.render('files', {
         title: 'Tilly: Files',
         user: req.user,
@@ -27,6 +29,7 @@ router.get('/:navpath*?', (req, res, next) => {
         navpath: navPath,
         homedir: homeDir,
         files: files,
+        login: first,
         humanize: readable.humanize
       });
     });

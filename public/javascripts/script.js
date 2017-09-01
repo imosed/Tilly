@@ -140,6 +140,9 @@ $(document).ready(function() {
         var r = JSON.parse(data);
         var iconimg = $('<img>').attr('src', getFileIcon(r.extension)).attr('width', '16').attr('height', '16');
         var fname = $('<span>').addClass('filename');
+        var sharedbox = $('<input>');
+        sharedbox.attr('type', 'checkbox');
+        sharedbox.attr('class', 'cb-shared shchk form-control');
         $(fname).text(r.display_name);
         var fo = $('.fileobj').first().clone().css('display', 'block');
         $($(fo).children()[0]).text('');
@@ -148,7 +151,8 @@ $(document).ready(function() {
         $($(fo).children()[1]).text(readable.humanize(r.size));
         $($(fo).children()[2]).text(r.owner);
         $($(fo).children()[3]).text(moment(r.date_added).format('MM-DD-YYYY'));
-        $($(fo).children()[4]).text(r.shared);
+        $($(fo).children()[4]).text('');
+        $($(fo).children()[4]).append(sharedbox);
         $('.filelist').append($(fo));
       }
     });

@@ -54,9 +54,9 @@ module.exports.getListingsForUser = function(user, navpath, callback) {
       owner: user._id,
       path: navpath
     }, callback)
-    .sort([
-      ['title', 'ascending']
-    ]).populate('owner');
+    .sort({
+      obj_type: 1, display_name: 1
+    }).populate('owner');
 }
 
 module.exports.createDirectory = function(newDir, callback) {
