@@ -9,9 +9,9 @@ function convertUnits(v, u) {
     var unit;
     n = parseInt(n);
     if (n > 10 * Math.pow(1024, 4)) unit = 'TB';
-    else if (n > 10 * Math.pow(1024, 3)) unit = 'GB';
-    else if (n > 10 * Math.pow(1024, 2)) unit = 'MB';
-    else if (n > 10 * 1024) unit = 'KB';
+    else if (n > Math.pow(1024, 3)) unit = 'GB';
+    else if (n > Math.pow(1024, 2)) unit = 'MB';
+    else if (n > 1024) unit = 'KB';
     else return 'unknown';
     return Math.round(convertUnits(n, unit) * 100) / 100 + (unit);
   };

@@ -16,7 +16,7 @@ router.get('/:navpath*?', (req, res, next) => {
     var navPath = (req.params.navpath || '');
     var homeDir = navPath.length > 0;
     var navPath = '/home/' + req.user.username + '/' + navPath;
-    const first = req.get('referer') == 'http://127.0.0.1:3000/';
+    const first = req.get('referer').replace(':3000', '') == req.protocol + '://' + req.hostname + '/';
     const index = Listings.getListingsForUser(req.user, navPath, (err, files) => {
       if (err) res.send(err);
       if (first)
