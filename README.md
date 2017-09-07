@@ -15,6 +15,7 @@ For my next priority, I hope to implement standard file controls (like you'd fin
 <tr><td>Planned</td><td>File Sharing Management</td><td>The ability for a file owner to stop sharing a file, or share a file for only a limited amount of time</td></tr>
 <tr><td>Planned</td><td>Zipping Directories</td><td>The ability for the owner of a directory to zip it</td></tr>
 <tr><td>Planned</td><td>Cloud Download</td><td>The ability for a user to feed Tilly a file's URL and download it to their cloud</td></tr>
+<tr><td>Planned</td><td>Refine Styles</td><td>Use original icons and change to a better color scheme</td></tr>
 <tr><td>Implemented</td><td>Registration System</td><td>System to allow users to register</td></tr>
 <tr><td>Implemented</td><td>Directory System</td><td>Creating and traversing directories</td></tr>
 <tr><td>Implemented</td><td>File Upload System</td><td>System for uploading files and into the correct directories</td></tr>
