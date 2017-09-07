@@ -24,3 +24,15 @@ For my next priority, I hope to implement standard file controls (like you'd fin
 <tr><td>Implemented</td><td>Commenting System</td><td>System for commenting on a file and seeing other users' comments on files</td></tr>
 </table>
 
+<h2>Screenshots</h2>
+<h3>Login Page</h3>
+<img width="640" src="https://imosed.github.io/tilly1.png" />
+
+<h3>File Browser</h3>
+<img width="640" src="https://imosed.github.io/tilly2.png" />
+
+<h3>File Properties</h3>
+<img width="640" src="https://imosed.github.io/tilly3.png" />
+
+<h3>Landing Page</h3>
+<img width="640" src="https://imosed.github.io/tilly4.png" />
