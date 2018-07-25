@@ -1,0 +1,6 @@
+config = {
+  dbname: 'tilly',
+  secretkey: 'tilly1234' # you should absolutely change this
+}
+
+module.exports = config;
